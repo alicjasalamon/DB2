@@ -11,5 +11,7 @@
         <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<mapping resource="Employee.hbm.xml"></mapping>
+		<mapping resource="Customer.hbm.xml"></mapping>
+		<mapping resource="Order.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

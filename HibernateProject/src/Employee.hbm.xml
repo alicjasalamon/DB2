@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2013-03-17 19:27:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="Employee" table="EMPLOYEE">
+    <class name="Employee" table="EMPLOYEES">
         <id name="EmployeeID" type="int">
             <column name="EMPLOYEEID" />
             <generator class="assigned" />
