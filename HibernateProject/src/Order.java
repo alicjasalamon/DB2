@@ -4,6 +4,18 @@ public class Order {
 	int orderID;
 	Employee employeeID;
 	Customer customerID;
+	int shipVia;
+	
+	
+	
+	public Order(Employee employeeID, Customer customerID) {
+		super();
+		this.employeeID = employeeID;
+		this.customerID = customerID;
+		this.shipVia = 1;
+	}
+	
+	public Order() {}
 	
 	public int getOrderID() {
 		return orderID;
@@ -23,6 +35,13 @@ public class Order {
 	public void setCustomerID(Customer customerID) {
 		this.customerID = customerID;
 	}
+	public int getShipVia() {
+		return shipVia;
+	}
+	public void setShipVia(int shipVia) {
+		this.shipVia = shipVia;
+	}
+	
 
 
 }

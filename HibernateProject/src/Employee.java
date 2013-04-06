@@ -7,6 +7,15 @@ public class Employee {
 	String City;
 	String HomePhone;
 	
+	public Employee(){};
+	
+	public Employee(String lastName, String firstName, String city) {
+		super();
+		LastName = lastName;
+		FirstName = firstName;
+		City = city;
+	}
+
 	public int getEmployeeID() {
 		return EmployeeID;
 	}
@@ -15,7 +24,6 @@ public class Employee {
 		EmployeeID = employeeID;
 	}
 
-	public Employee(){};
 	
 	public String getLastName() {
 		return LastName;

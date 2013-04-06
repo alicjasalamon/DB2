@@ -6,7 +6,7 @@
     <class name="Employee" table="EMPLOYEES">
         <id name="EmployeeID" type="int">
             <column name="EMPLOYEEID" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="LastName" type="java.lang.String">
             <column name="LASTNAME" />

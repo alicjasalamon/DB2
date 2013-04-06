@@ -4,6 +4,13 @@ public class Customer {
 	String customerID;
 	String companyName;
 	
+	public Customer() {}
+	
+	public Customer(String customerID ,String companyName) {
+		super();
+		this.customerID = customerID;
+		this.companyName = companyName;
+	}
 	public String getCustomerID() {
 		return customerID;
 	}

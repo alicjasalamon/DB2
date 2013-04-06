@@ -50,5 +50,6 @@
 	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/hibernate-search-4.2.0.Final-dist/hibernate-search-4.2.0.Final/dist/hibernate-search-engine-4.2.0.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/hibernate-search-4.2.0.Final-dist/hibernate-search-4.2.0.Final/dist/hibernate-search-orm-4.2.0.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/mysql-connector-java-5.1.24/mysql-connector-java-5.1.24/mysql-connector-java-5.1.24-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/log4j-1.2.17/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
