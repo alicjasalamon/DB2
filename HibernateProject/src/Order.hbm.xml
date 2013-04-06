@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-04-06 18:04:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Order" table="ORDER">
+        <id name="orderID" type="int">
+            <column name="ORDERID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="employeeID" class="Employee" fetch="join">
+            <column name="EMPLOYEEID" />
+        </many-to-one>
+        <many-to-one name="customerID" class="Customer" fetch="join">
+            <column name="CUSTOMERID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
