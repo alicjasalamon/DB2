@@ -6,15 +6,6 @@ public class Order {
 	Customer customerID;
 	int shipVia;
 	
-	
-	
-	public Order(Employee employeeID, Customer customerID) {
-		super();
-		this.employeeID = employeeID;
-		this.customerID = customerID;
-		this.shipVia = 1;
-	}
-	
 	public Order() {}
 	
 	public int getOrderID() {
@@ -40,6 +31,14 @@ public class Order {
 	}
 	public void setShipVia(int shipVia) {
 		this.shipVia = shipVia;
+	}
+	
+	
+	public Order(Employee employeeID, Customer customerID) {
+		super();
+		this.employeeID = employeeID;
+		this.customerID = customerID;
+		this.shipVia = 1;
 	}
 	
 

@@ -15,16 +15,12 @@ public class Employee {
 		FirstName = firstName;
 		City = city;
 	}
-
 	public int getEmployeeID() {
 		return EmployeeID;
 	}
-
 	public void setEmployeeID(int employeeID) {
 		EmployeeID = employeeID;
-	}
-
-	
+	}	
 	public String getLastName() {
 		return LastName;
 	}

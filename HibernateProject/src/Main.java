@@ -29,7 +29,7 @@ public class Main {
 			Customer c = new Customer("AXAMI", "Aksamit INC.");
 			session.save(c);
 
-			Employee e = new Employee("Ala", "Salamon", "Krakow");
+			Employee e = new Employee("Alicja", "Salamon", "Krakow");
 			session.save(e);
 
 			Order o = new Order(e, c);
@@ -58,7 +58,7 @@ public class Main {
 			c.companyName = "Axamit & Sons";
 			session.update(c);
 			
-			Employee e = new Employee("Salamon", "Ala", "Krakow");
+			Employee e = new Employee("Salamon", "Alicja", "Krakow");
 			e.EmployeeID=10;
 			session.update(e);
 
@@ -110,7 +110,7 @@ public class Main {
 		Transaction newTransaction = newSession.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Order> ordersList = newSession
-				.createSQLQuery("select * from Orders where OrderID=11078")
+				.createSQLQuery("select * from Orders where OrderID = 11078")
 				.addEntity(Order.class).list();
 
 		for (Iterator<Order> iter = ordersList.iterator(); iter.hasNext();) {
