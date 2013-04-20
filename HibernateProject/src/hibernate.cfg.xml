@@ -15,3 +15,4 @@
 		<mapping resource="Order.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
+
