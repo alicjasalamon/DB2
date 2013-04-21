@@ -6,17 +6,25 @@ public class Main {
 	public static void main(String[] args) {
 
 		// CREATE
+		comunicate("check your database, no new interesting orders");
 		addOrder();
-
+		comunicate("and now?");
+		
 		// READ
+		comunicate("What do we expect?");
 		readOrders();
 
 		// UPDATE
+		comunicate("Ups! Changes are coming");
 		updateUser();
 		readOrders();
+		comunicate("Check your database");
 
 		// DELETE
+		comunicate("Bye bye!");
 		deleteCustomer();
+		readOrders();
+		comunicate("Check your database again");
 	}
 
 	static private void addOrder() {
@@ -125,6 +133,14 @@ public class Main {
 		newSession.close();
 
 		HibernateUtil.getSessionFactory().close();
+	}
+	
+	static void comunicate(String s)
+	{
+		System.out.println(s);
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
+	
 	}
 
 }
