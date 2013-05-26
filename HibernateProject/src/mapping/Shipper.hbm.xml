@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mapping.Shipper" table="SHIPPERS">
+
+        <id name="shipperID" type="int">
+            <column name="SHIPPERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="companyName" type="java.lang.String">
+            <column name="COMPANYNAME" />
+        </property>
+        <set name="orders" table="ORDER" inverse="false" lazy="true">
+            <key>
+                <column name="SHIPVIA" />
+            </key>
+            <one-to-many class="mapping.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

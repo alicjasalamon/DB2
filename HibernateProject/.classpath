@@ -51,5 +51,12 @@
 	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/hibernate-search-4.2.0.Final-dist/hibernate-search-4.2.0.Final/dist/hibernate-search-orm-4.2.0.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/mysql-connector-java-5.1.24/mysql-connector-java-5.1.24/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Alicja/Downloads/instalki/log4j-1.2.17/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/ehcache-core-2.6.5/lib/ehcache-core-2.6.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/ehcache-core-2.6.5/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/ehcache-core-2.6.5/lib/slf4j-jdk14-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/ehcache-core-2.6.5/lib/agent/sizeof-agent-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/cglib-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/hibernate-ehcache-4.0.0.CR6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alicja/studia/6 semestr/bazy/slf4j-1.7.5.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

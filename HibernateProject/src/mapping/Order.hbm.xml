@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mapping.Order" table="ORDERS">
+
+        <id name="orderID" type="int">
+            <column name="ORDERID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="customerID" class="mapping.Customer" fetch="join">
+            <column name="CUSTOMERID" />
+        </many-to-one>
+        <property name="employeeID" type="int">
+            <column name="EMPLOYEEID" />
+        </property>
+        <property name="orderDate" type="java.sql.Timestamp">
+            <column name="ORDERDATE" />
+        </property>
+        <property name="requiredDate" type="java.sql.Timestamp">
+            <column name="REQUIREDDATE" />
+        </property>
+        <property name="shippedDate" type="java.sql.Timestamp">
+            <column name="SHIPPEDDATE" />
+        </property>
+        <many-to-one name="shipVia" class="mapping.Shipper" fetch="join">
+            <column name="SHIPVIA" />
+        </many-to-one>
+        <property name="freight" type="float">
+            <column name="FREIGHT" />
+        </property>
+        <property name="shipName" type="java.lang.String">
+            <column name="SHIPNAME" />
+        </property>
+        <property name="shipAddress" type="java.lang.String">
+            <column name="SHIPADDRESS" />
+        </property>
+        <property name="shipCity" type="java.lang.String">
+            <column name="SHIPCITY" />
+        </property>
+        <property name="shipRegion" type="java.lang.String">
+            <column name="SHIPREGION" />
+        </property>
+        <property name="shipPostalCode" type="java.lang.String">
+            <column name="SHIPPOSTALCODE" />
+        </property>
+        <property name="shipCountry" type="java.lang.String">
+            <column name="SHIPCOUNTRY" />
+        </property>
+        <set name="orders" table="ORDERS" inverse="false" lazy="true">
+            <key>
+                <column name="ORDERID" />
+            </key>
+            <one-to-many class="mapping.Order" />
+        </set>
+    </class>
+    
+        <sql-query name="query2">
+		<!-- return alias="stock" class="com.mkyong.common.Stock"/-->
+		<![CDATA[select avg(DATEDIFF(ShippedDate, OrderDate)), year(ShippedDate) from orders group by year(ShippedDate)]]>
+	</sql-query>
+	
+</hibernate-mapping>

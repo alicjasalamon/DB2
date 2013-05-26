@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mapping.Supplier" table="SUPPLIERS">
+ 
+        <id name="supplierID" type="int">
+            <column name="SUPPLIERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="companyName" type="java.lang.String">
+            <column name="COMPANYNAME" />
+        </property>
+        <set name="products" table="PRODUCTS" inverse="false" lazy="true">
+            <key>
+                <column name="SUPPLIERID" />
+            </key>
+            <one-to-many class="mapping.Product" />
+        </set>
+    </class>
+    
+
+</hibernate-mapping>

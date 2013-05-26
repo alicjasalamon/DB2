@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2013-04-06 18:04:55 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="Customer" table="CUSTOMERS">
+    <class name="mapping.Customer" table="CUSTOMERS">
+
         <id name="customerID" type="java.lang.String">
             <column name="CUSTOMERID" />
             <generator class="assigned" />
@@ -11,5 +12,15 @@
         <property name="companyName" type="java.lang.String">
             <column name="COMPANYNAME" />
         </property>
+        <property name="country" type="java.lang.String">
+            <column name="COUNTRY" />
+        </property>
+        <set name="orders" table="ORDERS" inverse="false" lazy="true">
+
+            <key>
+                <column name="CUSTOMERID" />
+            </key>
+            <one-to-many class="mapping.Order" />
+        </set>
     </class>
 </hibernate-mapping>

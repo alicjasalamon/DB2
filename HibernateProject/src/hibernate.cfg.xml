@@ -9,10 +9,21 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/northwindmysql</property>
         <property name="hibernate.connection.username">root</property>
         <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>										
-		<mapping resource="Employee.hbm.xml"></mapping>
-		<mapping resource="Customer.hbm.xml"></mapping>
-		<mapping resource="Order.hbm.xml"></mapping>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>		
+
+		<!-- property name="hibernate.jdbc.batch_size">20</property>	
+		<property name="hibernate.show_sql">false</property>  -->
+		
+		<!-- property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> -->
+		
+		<mapping resource="mapping/Supplier.hbm.xml"></mapping>
+		<mapping resource="mapping/Customer.hbm.xml"></mapping>
+		<mapping resource="mapping/Order.hbm.xml"></mapping>
+		<mapping resource="mapping/OrderDetail.hbm.xml"></mapping>
+		<mapping resource="mapping/Product.hbm.xml"></mapping>
+		<mapping resource="mapping/Shipper.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
 

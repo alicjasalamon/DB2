@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mapping.Product" table="PRODUCTS">
+
+        <id name="productID" type="int">
+            <column name="PRODUCTID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="supplierID" class="mapping.Supplier" fetch="join">
+            <column name="SUPPLIERID" />
+        </many-to-one>
+        <set name="orderdetails" table="ORDERDETAILS" inverse="false" lazy="true">
+            <key>
+                <column name="PRODUCTID" />
+            </key>
+            <one-to-many class="mapping.OrderDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mapping.OrderDetail" table="ORDERDETAILS" dynamic-insert="true">
+   
+        <id name="odID" type="int">
+            <column name="ODID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="orderID" class="mapping.Order" fetch="join">
+            <column name="ORDERID" />
+        </many-to-one>
+        <many-to-one name="productID" class="mapping.Product" fetch="join">
+            <column name="PRODUCTID" />
+        </many-to-one>
+        <property name="unitPrice" type="float">
+            <column name="UNITPRICE" />
+        </property>
+        <property name="quantity" type="int">
+            <column name="QUANTITY" />
+        </property>
+        <property name="discount" type="float">
+            <column name="DISCOUNT" />
+        </property>
+    </class>
+    
+    <query name="query4">
+        <![CDATA[select dayOfWeek(o.orderDate), sum(od.unitPrice) from OrderDetail od join od.orderID o group by dayOfWeek(o.orderDate)]]>
+    </query>
+    
+</hibernate-mapping>
