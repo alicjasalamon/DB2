@@ -4,6 +4,7 @@
 <!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="mapping.Customer" table="CUSTOMERS">
+    <!--cache usage="read-only" /-->
 
         <id name="customerID" type="java.lang.String">
             <column name="CUSTOMERID" />
@@ -16,7 +17,7 @@
             <column name="COUNTRY" />
         </property>
         <set name="orders" table="ORDERS" inverse="false" lazy="true">
-
+    	<!--cache usage="read-only" /-->
             <key>
                 <column name="CUSTOMERID" />
             </key>

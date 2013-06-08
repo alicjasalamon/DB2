@@ -7,6 +7,7 @@ import main.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 /*
  * ile zamówieñ z ka¿dego kraju zosta³o zrealizowanych
  */
@@ -16,14 +17,33 @@ public class Query_1 {
 
 		Query_1 query1_Regular = new Query_1();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
+		for (int i = 0; i < 500; i++) {
 
+			System.out.println(query1_Regular.test(session));
+		}
+		session.close();
+
+	}
+
+	long test(Session session) {
+		
+		Transaction tx = null;
+		long before=0, after=0;
 		try {
+			
+			before = System.currentTimeMillis();
 			tx = session.beginTransaction();
 
-			for (int i = 0; i < 1000; i++) {
+			List results = session
+					.createQuery(
+							"select c.country, count(o.orderID) from Order o join o.customerID c group by c.country")
+					.list();
 
-				System.out.println(query1_Regular.test(session));
+			Iterator ite = results.iterator();
+
+			while (ite.hasNext()) {
+				Object[] objects = (Object[]) ite.next();
+				// System.out.println(objects[0] + " " + objects[1]);
 			}
 
 		} catch (RuntimeException e) {
@@ -33,26 +53,9 @@ public class Query_1 {
 			e.printStackTrace();
 		} finally {
 			tx.commit();
+			after = System.currentTimeMillis();
 			session.flush();
-			session.close();
 		}
-
-	}
-
-	long test(Session session) {
-		long before = System.currentTimeMillis();
-		
-		List results = session.createQuery("select c.country, count(o.orderID) from Order o join o.customerID c group by c.country" ).list();
-
-
-		Iterator ite = results.iterator();
-
-		while (ite.hasNext()) {
-			Object[] objects = (Object[]) ite.next();
-			// System.out.println(objects[0] + " " + objects[1]);
-		}
-
-		long after = System.currentTimeMillis();
 
 		return after - before;
 

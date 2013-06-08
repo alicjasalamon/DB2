@@ -17,13 +17,36 @@ public class Query_2 {
 
 		Query_2 query1_Regular = new Query_2();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
 
+		for (int i = 0; i < 500; i += 1) {
+			System.out.println(query1_Regular.test(session));
+		}
+
+		session.close();
+
+	}
+	
+	long test(Session session) {
+		
+		Transaction tx = null;
+		long before=0, after=0;
 		try {
+			
+			before = System.currentTimeMillis();
 			tx = session.beginTransaction();
 
-			for (int i = 0; i < 1000; i += 1) {
-				System.out.println(query1_Regular.test(session));
+//			List results = session
+//			.createSQLQuery(
+//					"select avg(DATEDIFF(ShippedDate, OrderDate)), year(ShippedDate) from orders group by year(ShippedDate)")
+//			.list();
+
+			List results = session.getNamedQuery("query2").list();
+
+			Iterator ite = results.iterator();
+
+			while (ite.hasNext()) {
+				Object[] objects = (Object[]) ite.next();
+				// System.out.println(objects[0] + " " + objects[1]);
 			}
 
 		} catch (RuntimeException e) {
@@ -33,32 +56,13 @@ public class Query_2 {
 			e.printStackTrace();
 		} finally {
 			tx.commit();
+			after = System.currentTimeMillis();
 			session.flush();
-			session.close();
 		}
-		CacheManager.getInstance().shutdown();
-
-	}
-
-	long test(Session session) {
-
-		long before = System.currentTimeMillis();
-
-//		List studentList = session
-//				.createSQLQuery(
-//						"select avg(DATEDIFF(ShippedDate, OrderDate)), year(ShippedDate) from orders group by year(ShippedDate)")
-//				.list();
-
-		List results = session.getNamedQuery("query2").list();
-		
-		Iterator ite = results.iterator();
-		while (ite.hasNext()) {
-			Object[] objects = (Object[]) ite.next();
-		}
-
-		long after = System.currentTimeMillis();
 
 		return after - before;
+
 	}
+
 
 }

@@ -7,6 +7,7 @@ import main.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 /*
  * jaka kwota zamówieñ by³a zg³aszana w ka¿dy z dni tygodnia
  */
@@ -16,14 +17,36 @@ public class Query_4 {
 
 		Query_4 query1_Regular = new Query_4();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
 
+		for (int j = 0; j < 300; j += 1) {
+			System.out.println(query1_Regular.test(session));
+		}
+		session.close();
+	}
+
+	long test(Session session) {
+
+		Transaction tx = null;
+		long before = 0, after = 0;
 		try {
+
+			before = System.currentTimeMillis();
 			tx = session.beginTransaction();
 
-			for (int j = 0; j < 500; j += 1) {
-				System.out.println(j + " " + query1_Regular.test(session));
+			List results = session
+					.createQuery(
+							"select dayOfWeek(o.orderDate), sum(od.unitPrice * od.quantity) from OrderDetail od join od.orderID o group by dayOfWeek(o.orderDate)")
+					.list();
+
+//			 List results = session.getNamedQuery("query4").list();
+
+			Iterator ite = results.iterator();
+
+			while (ite.hasNext()) {
+				Object[] objects = (Object[]) ite.next();
+				// System.out.println(objects[0] + " " + objects[1]);
 			}
+
 		} catch (RuntimeException e) {
 			if (tx != null) {
 				tx.rollback();
@@ -31,28 +54,12 @@ public class Query_4 {
 			e.printStackTrace();
 		} finally {
 			tx.commit();
+			after = System.currentTimeMillis();
 			session.flush();
-			session.close();
 		}
-	}
-
-	long test(Session session) {
-
-		long before = System.currentTimeMillis();
-
-//		List results = session.createQuery( "select dayOfWeek(o.orderDate), sum(od.unitPrice) from OrderDetail od join od.orderID o group by dayOfWeek(o.orderDate)" ).list();
-
-		List results = session.getNamedQuery("query4").list();
-		Iterator ite = results.iterator();
-		while (ite.hasNext()) {
-			Object[] objects = (Object[]) ite.next();
-		//	System.out.println(objects[0] + " " + objects[1]);
-		}
-
-		long after = System.currentTimeMillis();
 
 		return after - before;
+
 	}
-	
 
 }

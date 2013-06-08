@@ -4,7 +4,7 @@
 <!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="mapping.Order" table="ORDERS">
-
+    <!--cache usage="read-only" /-->
         <id name="orderID" type="int">
             <column name="ORDERID" />
             <generator class="assigned" />
@@ -49,6 +49,7 @@
             <column name="SHIPCOUNTRY" />
         </property>
         <set name="orders" table="ORDERS" inverse="false" lazy="true">
+  		<!--cache usage="read-only" /-->
             <key>
                 <column name="ORDERID" />
             </key>
@@ -57,7 +58,6 @@
     </class>
     
         <sql-query name="query2">
-		<!-- return alias="stock" class="com.mkyong.common.Stock"/-->
 		<![CDATA[select avg(DATEDIFF(ShippedDate, OrderDate)), year(ShippedDate) from orders group by year(ShippedDate)]]>
 	</sql-query>
 	

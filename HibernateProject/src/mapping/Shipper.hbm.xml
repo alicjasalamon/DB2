@@ -4,7 +4,7 @@
 <!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="mapping.Shipper" table="SHIPPERS">
-
+    <!--cache usage="read-only" /-->
         <id name="shipperID" type="int">
             <column name="SHIPPERID" />
             <generator class="assigned" />
@@ -13,6 +13,7 @@
             <column name="COMPANYNAME" />
         </property>
         <set name="orders" table="ORDER" inverse="false" lazy="true">
+  	  <!--cache usage="read-only" /-->
             <key>
                 <column name="SHIPVIA" />
             </key>

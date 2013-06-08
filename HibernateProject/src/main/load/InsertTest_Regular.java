@@ -42,21 +42,17 @@ public class InsertTest_Regular {
 		long begin =0, after=0;
 		
 		try {
-			tx = session.beginTransaction();
 			begin = System.currentTimeMillis();
-			
+			tx = session.beginTransaction();
+		
 			for ( Order order : data.keySet()) {
-//				System.out.println("-----" + i);
-//				System.out.println("order: " + order.getOrderID());
 			    session.save(order);
 			    
 			    for(OrderDetail orderDetail : data.get(order)){
 
-//					System.out.println("\torderdetail: " + orderDetail.getOdID());
 			    	session.save(orderDetail);
 			    }
 			}
-//			System.out.println();
 			
 		} catch(RuntimeException e){
 			if (tx != null) {
@@ -64,8 +60,9 @@ public class InsertTest_Regular {
 			}
 			e.printStackTrace();
 		}finally{ 
-			after = System.currentTimeMillis();
+
 			tx.commit();
+			after = System.currentTimeMillis();
 	        session.flush();
 			session.close();
 		}

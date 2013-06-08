@@ -4,7 +4,7 @@
 <!-- Generated 2013-05-23 20:26:45 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="mapping.Product" table="PRODUCTS">
-
+    <!--cache usage="read-only" /-->
         <id name="productID" type="int">
             <column name="PRODUCTID" />
             <generator class="assigned" />
@@ -13,6 +13,7 @@
             <column name="SUPPLIERID" />
         </many-to-one>
         <set name="orderdetails" table="ORDERDETAILS" inverse="false" lazy="true">
+    <!--cache usage="read-only" /-->
             <key>
                 <column name="PRODUCTID" />
             </key>

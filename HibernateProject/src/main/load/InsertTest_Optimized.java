@@ -21,13 +21,13 @@ public class InsertTest_Optimized {
 		insertTest.ordersParser.setMode(1);
 		
 		for(int j = 0; j<10000; j+=1000){
-			System.out.println("czas: " + j + " \t" + insertTest.test(j));
+			System.out.println(insertTest.test(j));
 		}
 		
 		insertTest.ordersParser.setMode(2);
 		
 		for(int j = 0; j<20000; j+=1000){
-			System.out.println("czas: " + j + " \t" + insertTest.test(j));
+			System.out.println(insertTest.test(j));
 		}
 		
 	}
@@ -44,19 +44,26 @@ public class InsertTest_Optimized {
 		
 		try {
 
-			tx = session.beginTransaction();
 			begin = System.currentTimeMillis();
+			tx = session.beginTransaction();
 			
+			int i=0;
 			for ( Order order : data.keySet()) {
-//				System.out.println("-----" + i);
-//				System.out.println("order: " + order.getOrderID());
 				
 			    session.save(order);
+			    i++;
 			    
 			    for(OrderDetail orderDetail : data.get(order)){
 
-//					System.out.println("\torderdetail: " + orderDetail.getOdID());
 			    	session.save(orderDetail);
+			    	i++;
+			    	if(i%20 ==0)
+			    	{	//20, same as the JDBC batch size        
+			    		//flush a batch of inserts and release memory:         
+			    			session.flush();
+			    			session.clear();
+			    	} 
+
 			    }
 			    
 			}
@@ -67,8 +74,8 @@ public class InsertTest_Optimized {
 			}
 			e.printStackTrace();
 		}finally{ 
-			after = System.currentTimeMillis();
 			tx.commit();
+			after = System.currentTimeMillis();
 	        session.flush();
 			session.close();
 		}

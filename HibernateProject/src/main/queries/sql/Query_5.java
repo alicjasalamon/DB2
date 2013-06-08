@@ -18,12 +18,36 @@ public class Query_5 {
 
 		Query_5 query1_Regular = new Query_5();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
 
+		for (int j = 0; j < 40; j += 1) {
+			System.out.println(query1_Regular.test(session));
+		}
+
+		session.close();
+	}
+
+	long test(Session session) {
+
+		Transaction tx = null;
+		long before = 0, after = 0;
 		try {
+
+			before = System.currentTimeMillis();
 			tx = session.beginTransaction();
-			for (int j = 0; j < 300; j += 1) {
-				System.out.println(query1_Regular.test(session));
+
+//			List results = session
+//					.createSQLQuery(
+//							"select Country, YEAR(OrderDate), sum(UnitPrice*Quantity) from orderdetails inner join orders on orderdetails.OrderID = orders.OrderID inner join customers on orders.OrderID = orderdetails.orderID group by Country, YEAR(OrderDate)")
+//					.list();
+			
+			 List results =
+			 session.createSQLQuery("call proc_query5()").list();
+
+			Iterator ite = results.iterator();
+
+			while (ite.hasNext()) {
+				Object[] objects = (Object[]) ite.next();
+				// System.out.println(objects[0] + " " + objects[1]);
 			}
 
 		} catch (RuntimeException e) {
@@ -33,27 +57,12 @@ public class Query_5 {
 			e.printStackTrace();
 		} finally {
 			tx.commit();
+			after = System.currentTimeMillis();
 			session.flush();
-			session.close();
 		}
-		CacheManager.getInstance().shutdown();
-	}
-
-	long test(Session session) {
-		long before = System.currentTimeMillis();
-
-		List result = session.createSQLQuery("select Country, YEAR(OrderDate), sum(UnitPrice*Quantity) from orderdetails inner join orders on orderdetails.OrderID = orders.OrderID inner join customers on orders.OrderID = orderdetails.orderID group by Country, YEAR(OrderDate)").list();
-//		List studentList = session.createSQLQuery("call proc_query5()").list();
-
-		Iterator ite = result.iterator();
-		while (ite.hasNext()) {
-			Object[] objects = (Object[]) ite.next();
-			// System.out.println(objects[0] + " " + objects[1] + " " + objects[2]);
-		}
-
-		long after = System.currentTimeMillis();
 
 		return after - before;
+
 	}
 
 }
